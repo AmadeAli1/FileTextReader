@@ -1,6 +1,8 @@
 # FileTextReader
 A customized way to read Java/Kotlin text fileswith annotations in a simple and effective way
 
+* To download the library click on FileTextReader.jar
+
 * Example of a data class (model)
 
       @FileConfiguration(filename = "src\\pessoa.txt", separator = "|")
