@@ -1,5 +1,5 @@
 # FileTextReader
-A customized way to read Java/Kotlin text fileswith annotations in a simple and effective way
+A customized way to read Java/Kotlin text files with annotations in a simple and effective way
 
 * To download the library click on FileTextReader.jar
 
