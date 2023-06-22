@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="FileTextReader:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/FileTextReader_jar</output-path>
+    <root id="archive" name="FileTextReader.jar">
+      <element id="module-output" name="FileTextReader" />
+    </root>
+  </artifact>
+</component>
