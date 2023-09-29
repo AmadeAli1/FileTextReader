@@ -1,10 +1,16 @@
 # FileTextReader
-A customized way to read Java/Kotlin text fileswith annotations in a simple and effective way
+
+A customized way to read Java/Kotlin text file with annotations in a simple and effective way
+
+* File Content (person.txt)
+
+        firstname=Java|age=30|genre=Male|lastname=Kotlin
+        firstname=John|lastname=Mclanne|age=12|genre=Male
 
 * Example of a data class (model)
 
-      @FileConfiguration(filename = "src\\pessoa.txt", separator = "|")
-      public class Pessoa {
+      @FileConfiguration(filename = "src\\person.txt", separator = "|")
+      public class Person {
           @Field(min = 3)
           private String firstname;
 
@@ -12,62 +18,63 @@ A customized way to read Java/Kotlin text fileswith annotations in a simple and 
         private String lastname;
 
         @Field(type = DataType.BYTE)
-        private Byte idade;
+        private Byte age;
 
-        @Field(valid = {"solteiro", "casado", "playboy"})
-        private String estado_civil;
+        @Field(valid = {"Male", "Female"})
+        private String genre;
 
-        public Pessoa(String firstname, String lastname, Byte idade, String estado_civil) {
+        public Person(String firstname, String lastname, Byte age, String genre) {
             this.firstname = firstname;
             this.lastname = lastname;
-            this.idade = idade;
-            this.estado_civil = estado_civil;
+            this.age = age;
+            this.genre = genre;
         }
-
-        public Pessoa() {
+        
+        //Required Empty Constructor
+        public Person() {
         }
 
         @Override
         public String toString() {
-            return new StringJoiner(", ", Pessoa.class.getSimpleName() + "[", "]")
+            return new StringJoiner(", ", Person.class.getSimpleName() + "[", "]")
                     .add("firstname='" + firstname + "'")
                     .add("lastname='" + lastname + "'")
-                    .add("idade=" + idade)
-                    .add("estado_civil='" + estado_civil + "'")
+                    .add("age=" + age)
+                    .add("genre='" + genre + "'")
                     .toString();
         }
 
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
-            if (!(o instanceof Pessoa pessoa)) return false;
+            if (!(o instanceof Person person)) return false;
 
-            if (!Objects.equals(firstname, pessoa.firstname)) return false;
-            if (!Objects.equals(lastname, pessoa.lastname)) return false;
-            return Objects.equals(idade, pessoa.idade);
+            if (!Objects.equals(firstname, person.firstname)) return false;
+            if (!Objects.equals(lastname, person.lastname)) return false;
+            return Objects.equals(age, person.age);
         }
 
         @Override
         public int hashCode() {
             int result = firstname != null ? firstname.hashCode() : 0;
             result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
-            result = 31 * result + (idade != null ? idade.hashCode() : 0);
+            result = 31 * result + (age != null ? age.hashCode() : 0);
             return result;
         }
       }
-      
-*   How to use
-        
-        public static void main(String [] args){
-        
-           FileTextReader<Pessoa> fileTextReader = new FileTextReaderImpl<>(Pessoa.class, new FileReaderListener<Pessoa>() {
-                  @Override
-                  public void onResult(Set<Pessoa> data) {
-                      System.out.printf("Called:: %s%n", Instant.now());
-                      data.forEach(System.out::println);
-                  }
-              });
 
-            fileTextReader.saveAll(new Pessoa("Antony", "Tylor", (byte) 20, "playboy"));
-        }    
+* How to use
+
+      public static void main(String [] args){
+      
+         FileTextReader<Pessoa> fileTextReader = new FileTextReaderImpl<>(Pessoa.class, new FileReaderListener<Pessoa>() {
+                @Override
+                public void onResult(Set<Pessoa> data) {
+                    System.out.printf("Called:: %s%n", Instant.now());
+                    data.forEach(System.out::println);
+                }
+            });
+
+          fileTextReader.saveAll(new Person("Antony", "Tylor", (byte) 20, "Male"));
+      }    
 

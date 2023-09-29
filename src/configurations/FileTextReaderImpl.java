@@ -75,7 +75,12 @@ public class FileTextReaderImpl<T> implements FileTextReader<T> {
             listener.onResult(sets);
         } catch (IllegalAccessException | IOException | InvocationTargetException | NoSuchMethodException |
                  InstantiationException e) {
-            e.printStackTrace();
+            if (e instanceof NoSuchMethodException) {
+                System.err.println("Required empty constructor in class" + clazz.getSimpleName());
+                System.err.printf("Add this public class %s(){}%n", clazz.getSimpleName());
+            }else{
+                e.printStackTrace();
+            }
         } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         } finally {

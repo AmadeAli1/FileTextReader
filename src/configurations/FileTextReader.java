@@ -8,7 +8,7 @@ package configurations;
 public interface FileTextReader<T> {
 
     /**
-     * Reads the text file
+     * Reads the text file,
      */
     void read();
 
