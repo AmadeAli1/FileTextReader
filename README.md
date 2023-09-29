@@ -2,6 +2,9 @@
 
 A customized way to read Java/Kotlin text file with annotations in a simple and effective way
 
+* **Download**
+    https://github.com/AmadeAli1/FileTextReader/blob/master/FileTextReader.jar
+
 * File Content (person.txt)
 
         firstname=Java|age=30|genre=Male|lastname=Kotlin
